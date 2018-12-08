@@ -134,7 +134,7 @@ public class NewCongestionChargeSystem {
         Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsPerVehicle = congestionChargeSystem.getCrossingsPerVehicle();
         for(int i = 0; i < crossingsPerVehicle.size(); i++) {
             Vehicle v = (Vehicle) crossingsPerVehicle.keySet().toArray()[i];
-            System.out.print(v + " : ");
+            System.out.println(v + " :");
             for(int j = 0; j < crossingsPerVehicle.get(v).size(); j++){
                 ZoneBoundaryCrossing zone = crossingsPerVehicle.get(v).get(j);
                 String instance = "";
@@ -143,9 +143,9 @@ public class NewCongestionChargeSystem {
                 } else {
                     instance = "Exit";
                 }
-                System.out.print(zone.toString() + " " + instance + " || ");
+                System.out.println(zone.toString() + " " + instance + " || ");
             }
-            System.out.println();
+            System.out.println("Order correct? " + congestionChargeSystem.checkOrderingOf(crossingsPerVehicle.get(v)));
         }
     }
 

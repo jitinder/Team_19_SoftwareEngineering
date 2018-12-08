@@ -9,7 +9,7 @@ public class NewCongestionChargeSystem {
     public static final BigDecimal CHARGE_BEFORE_TWO_PM = new BigDecimal(6);
     public static final BigDecimal CHARGE_AFTER_TWO_PM = new BigDecimal(4);
     public static final BigDecimal CHARGE_OVERTIME = new BigDecimal(12);
-    public static final int FOUR_HOURS_IN_MS = 4 * 60 * 60 * 1000;
+    public static final int ONE_HOUR_IN_MS = 60 * 60 * 1000;
     public static final int FOUR_HOURS_IN_MINS = 4 * 60;
 
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<ZoneBoundaryCrossing>();
@@ -105,7 +105,7 @@ public class NewCongestionChargeSystem {
         return (int) Math.abs(Math.ceil((endTimeMs - startTimeMs) / (1000.0 * 60.0)));
     }
 
-    private boolean canchargeAgain(long startTimeMs, long currentTime) {
+    private boolean canChargeAgain(long startTimeMs, long currentTime) {
         int timeTaken = minutesBetween(startTimeMs, currentTime);
         if(timeTaken <= FOUR_HOURS_IN_MINS){
             return false;
@@ -117,9 +117,29 @@ public class NewCongestionChargeSystem {
     // For Testing
     public static void main(String args[]){
         NewCongestionChargeSystem congestionChargeSystem = new NewCongestionChargeSystem();
-        long startTime = System.currentTimeMillis();
-        long endTime = startTime + FOUR_HOURS_IN_MS;
-        System.out.println(congestionChargeSystem.canchargeAgain(endTime, startTime));
+
+        List<Vehicle> vehicles = new ArrayList<>();
+        vehicles.add(Vehicle.withRegistration("A123 XYZ"));
+        vehicles.add(Vehicle.withRegistration("J091 4PY"));
+        vehicles.add(Vehicle.withRegistration("B246 XYZ"));
+        vehicles.add(Vehicle.withRegistration("C783 4TT"));
+        vehicles.add(Vehicle.withRegistration("D243 5PR"));
+
+        long sysTime = System.currentTimeMillis();
+        congestionChargeSystem.eventLog.add(new EntryEvent(vehicles.get(0), sysTime));
+        congestionChargeSystem.eventLog.add(new ExitEvent(vehicles.get(0), sysTime + ONE_HOUR_IN_MS));
+        congestionChargeSystem.eventLog.add(new EntryEvent(vehicles.get(1), sysTime + ONE_HOUR_IN_MS));
+        congestionChargeSystem.eventLog.add(new ExitEvent(vehicles.get(1), sysTime + (3*ONE_HOUR_IN_MS)));
+
+        Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsPerVehicle = congestionChargeSystem.getCrossingsPerVehicle();
+        for(int i = 0; i < crossingsPerVehicle.size(); i++) {
+            Vehicle v = (Vehicle) crossingsPerVehicle.keySet().toArray()[i];
+            System.out.print(v + " : ");
+            for(int j = 0; j < crossingsPerVehicle.get(v).size(); j++){
+                System.out.print(crossingsPerVehicle.get(v).get(j).toString() + " || ");
+            }
+            System.out.println();
+        }
     }
 
 }

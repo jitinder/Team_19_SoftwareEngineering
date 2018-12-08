@@ -45,7 +45,7 @@ public class NewCongestionChargeSystem {
      * @return true if a {@link ZoneBoundaryCrossing} event has been previously registered for the event
      * @return false if a {@link ZoneBoundaryCrossing} event has not been previously registered for the event
      */
-    private boolean previouslyRegistered(Vehicle vehicle) {
+    public boolean previouslyRegistered(Vehicle vehicle) {
         for (ZoneBoundaryCrossing crossing : eventLog) {
             if (crossing.getVehicle().equals(vehicle)) {
                 return true;
@@ -61,7 +61,7 @@ public class NewCongestionChargeSystem {
      * @return true if the order of entries is valid
      * @return false if the order of entries is not appropriate
      */
-    private boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
+    public boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
 
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
 
@@ -86,7 +86,7 @@ public class NewCongestionChargeSystem {
      *
      * @return a Map of Vehicle to List of all crossings in the eventLog per day.
      */
-    private Map<Vehicle, List<ZoneBoundaryCrossing>> getCrossingsPerVehicle(){
+    public Map<Vehicle, List<ZoneBoundaryCrossing>> getCrossingsPerVehicle(){
         HashMap<Vehicle, List<ZoneBoundaryCrossing>> crossingsPerVehicle = new HashMap<>();
 
         for(ZoneBoundaryCrossing crossing: eventLog){

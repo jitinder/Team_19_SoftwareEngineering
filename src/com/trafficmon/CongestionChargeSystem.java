@@ -2,7 +2,6 @@ package com.trafficmon;
 
 import java.math.BigDecimal;
 import java.util.*;
-import com.trafficmon.*;
 
 public class CongestionChargeSystem {
 

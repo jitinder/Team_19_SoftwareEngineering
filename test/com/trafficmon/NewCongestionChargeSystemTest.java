@@ -32,6 +32,16 @@ public class NewCongestionChargeSystemTest {
         assertEquals(newCongestionChargeSystem.eventLog.size(), preSize+1);
     }
 
+    @Test
+    public void checkingIfVehicleLeftTheZone() {
+        if (!newCongestionChargeSystem.previouslyRegistered(vehicle)) {
+            assertNull(newCongestionChargeSystem.vehicleLeavingZone(vehicle);
+        }
+        assertEquals(newCongestionChargeSystem.eventLog.add(new ExitEvent(vehicle));
+    }
+
+    }
+
 
 
     @Test

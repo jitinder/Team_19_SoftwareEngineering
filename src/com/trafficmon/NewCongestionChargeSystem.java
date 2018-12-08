@@ -128,15 +128,22 @@ public class NewCongestionChargeSystem {
         long sysTime = System.currentTimeMillis();
         congestionChargeSystem.eventLog.add(new EntryEvent(vehicles.get(0), sysTime));
         congestionChargeSystem.eventLog.add(new ExitEvent(vehicles.get(0), sysTime + ONE_HOUR_IN_MS));
-        congestionChargeSystem.eventLog.add(new EntryEvent(vehicles.get(1), sysTime + ONE_HOUR_IN_MS));
-        congestionChargeSystem.eventLog.add(new ExitEvent(vehicles.get(1), sysTime + (3*ONE_HOUR_IN_MS)));
+        congestionChargeSystem.eventLog.add(new EntryEvent(vehicles.get(0), sysTime + (3*ONE_HOUR_IN_MS)));
+        congestionChargeSystem.eventLog.add(new ExitEvent(vehicles.get(0), sysTime + (3*ONE_HOUR_IN_MS)));
 
         Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsPerVehicle = congestionChargeSystem.getCrossingsPerVehicle();
         for(int i = 0; i < crossingsPerVehicle.size(); i++) {
             Vehicle v = (Vehicle) crossingsPerVehicle.keySet().toArray()[i];
             System.out.print(v + " : ");
             for(int j = 0; j < crossingsPerVehicle.get(v).size(); j++){
-                System.out.print(crossingsPerVehicle.get(v).get(j).toString() + " || ");
+                ZoneBoundaryCrossing zone = crossingsPerVehicle.get(v).get(j);
+                String instance = "";
+                if(zone instanceof EntryEvent){
+                    instance = "Entry";
+                } else {
+                    instance = "Exit";
+                }
+                System.out.print(zone.toString() + " " + instance + " || ");
             }
             System.out.println();
         }

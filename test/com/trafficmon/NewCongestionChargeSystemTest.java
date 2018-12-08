@@ -16,10 +16,9 @@ public class NewCongestionChargeSystemTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
-    List<ZoneBoundaryCrossing> eventLog = new ArrayList<>();
-
     String registration = "45676382";
     Vehicle vehicle;
+    NewCongestionChargeSystem newCongestionChargeSystem = new NewCongestionChargeSystem();
 
     public NewCongestionChargeSystemTest() {
         vehicle = new Vehicle(registration);
@@ -27,15 +26,13 @@ public class NewCongestionChargeSystemTest {
 
     @Test
     public void checkingIfVehicleEnteredTheZone() {
-        assertEquals(eventLog.size(), 0);
-        NewCongestionChargeSystem.vehicleEnteringZone(vehicle);
-        assertEquals(eventLog.size(), 1);
+        int preSize = newCongestionChargeSystem.eventLog.size();
+        assertEquals(newCongestionChargeSystem.eventLog.size(), preSize);
+       newCongestionChargeSystem.vehicleEnteringZone(vehicle);
+        assertEquals(newCongestionChargeSystem.eventLog.size(), preSize+1);
     }
 
-    @Test
-    public void vehicleLeavingZoneTest() {
-        assertNotNull(ZoneBoundaryCrossing.getVehicle());
-    }
+
 
     @Test
     public void getCrossingsPerVehicleTest() {
@@ -43,12 +40,12 @@ public class NewCongestionChargeSystemTest {
         HashMap<Vehicle, List<ZoneBoundaryCrossing>> crossingsPerVehicle = new HashMap<>();
         int previousSize = crossingsPerVehicle.size();
 
-        assertNotNull(NewCongestionChargeSystem.getCrossingsPerVehicle());
+        assertNotNull(newCongestionChargeSystem.getCrossingsPerVehicle());
 
-        for(ZoneBoundaryCrossing crossing: eventLog){
+        for(ZoneBoundaryCrossing crossing: newCongestionChargeSystem.eventLog){
             Vehicle currentVehicle = crossing.getVehicle();
             if(!crossingsPerVehicle.containsKey(currentVehicle)){
-                assertTrue(NewCongestionChargeSystem.previouslyRegistered(currentVehicle));
+                assertTrue(newCongestionChargeSystem.previouslyRegistered(currentVehicle));
             }
             assertEquals(previousSize +1,crossingsPerVehicle.size());
         }

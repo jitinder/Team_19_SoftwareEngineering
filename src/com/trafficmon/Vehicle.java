@@ -2,9 +2,9 @@ package com.trafficmon;
 
 public class Vehicle {
 
-    private final String registration;
+    public final String registration;
 
-    private Vehicle(String registration) {
+    public Vehicle(String registration) {
         this.registration = registration;
     }
 

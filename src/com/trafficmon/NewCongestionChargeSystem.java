@@ -12,7 +12,7 @@ public class NewCongestionChargeSystem {
     public static final int ONE_HOUR_IN_MS = 60 * 60 * 1000;
     public static final int FOUR_HOURS_IN_MINS = 4 * 60;
 
-    private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<ZoneBoundaryCrossing>();
+    public final List<ZoneBoundaryCrossing> eventLog = new ArrayList<ZoneBoundaryCrossing>();
 
     /* Vehicle Data Methods */
 

@@ -38,21 +38,6 @@ public class NewCongestionChargeSystemTest {
         assertEquals(newCongestionChargeSystem.eventLog.size(), previousSize+1);
     }
 
-    /*
-
-    @Test
-    public void vehicleLeavingZoneTest_forNewVehicleEntry() {
-        newCongestionChargeSystem.previouslyRegistered(vehicle) = true;
-        {
-            assertEquals(newCongestionChargeSystem.vehicleLeavingZone(vehicle), );
-        }
-    }
-
-    public void vehicleLeavingZoneTest_forPreviouslyRegisteredVehicle() {
-
-    }*/
-
-
     @Test
     public void previouslyRegisteredTest_forNewVehicles() {
          //

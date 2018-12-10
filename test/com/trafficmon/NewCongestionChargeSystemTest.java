@@ -1,5 +1,6 @@
 package com.trafficmon;
 
+import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
 import org.junit.Test;
@@ -16,34 +17,47 @@ public class NewCongestionChargeSystemTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
-    /*String registration = "45676382";
+    String registration = "AXH 110";
     Vehicle vehicle;
-    NewCongestionChargeSystem newCongestionChargeSystem = new NewCongestionChargeSystem();
+    long timestamp;
 
     public NewCongestionChargeSystemTest() {
         vehicle = new Vehicle(registration);
     }
 
-    @Test
-    public void checkingIfVehicleEnteredTheZone() {
-        int preSize = newCongestionChargeSystem.eventLog.size();
-        assertEquals(newCongestionChargeSystem.eventLog.size(), preSize);
+    NewCongestionChargeSystem newCongestionChargeSystem = new NewCongestionChargeSystem();
+
+    EntryEvent entryEvent;
+
+
+   @Test
+    public void vehicleEnteringZoneTest() {
+        int previousSize = newCongestionChargeSystem.eventLog.size();
+        assertEquals(newCongestionChargeSystem.eventLog.size(), previousSize);
        newCongestionChargeSystem.vehicleEnteringZone(vehicle);
-        assertEquals(newCongestionChargeSystem.eventLog.size(), preSize+1);
+        assertEquals(newCongestionChargeSystem.eventLog.size(), previousSize+1);
     }
 
     @Test
-    public void checkingIfVehicleLeftTheZone() {
-        if (!newCongestionChargeSystem.previouslyRegistered(vehicle)) {
-            assertNull(newCongestionChargeSystem.vehicleLeavingZone(vehicle));
-        }
-        assertEquals(newCongestionChargeSystem.eventLog.add(new ExitEvent(vehicle)));
+    public void previouslyRegisteredTest_forNewVehicles() {
+         //
+         String newRegistration = "ABC 123";
+         Vehicle newVehicle = new Vehicle(newRegistration);
+
+         assertFalse(newCongestionChargeSystem.previouslyRegistered(newVehicle));
     }
 
+   @Test
+   public void previouslyRegisteredTest_forRegisteredVehicles() {
+         entryEvent = new EntryEvent(vehicle, timestamp);
+         newCongestionChargeSystem.eventLog.add(entryEvent);
 
+         assertTrue(newCongestionChargeSystem.previouslyRegistered(vehicle));
+
+    }
 
     @Test
-    public void getCrossingsPerVehicleTest() {
+    public void getCrossingsPerVehicleTest(){
 
         HashMap<Vehicle, List<ZoneBoundaryCrossing>> crossingsPerVehicle = new HashMap<>();
         int previousSize = crossingsPerVehicle.size();
@@ -55,7 +69,24 @@ public class NewCongestionChargeSystemTest {
             if(!crossingsPerVehicle.containsKey(currentVehicle)){
                 assertTrue(newCongestionChargeSystem.previouslyRegistered(currentVehicle));
             }
-            assertEquals(previousSize +1,crossingsPerVehicle.size());
+            assertEquals(crossingsPerVehicle.size(),previousSize +1);
         }
-    }*/
+    }
+
+
+ /*
+
+    @Test
+    public void checkOrderingOf() {
+    }
+
+    @Test
+    public void main() {
+    }
+    */
+
+    public void tearDown() {
+        newCongestionChargeSystem = null;
+    }
+
 }

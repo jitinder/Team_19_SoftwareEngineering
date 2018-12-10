@@ -15,6 +15,10 @@ public class NewCongestionChargeSystem {
 
     private final List<ZoneBoundaryCrossing> eventLog = new ArrayList<ZoneBoundaryCrossing>();
 
+    public List<ZoneBoundaryCrossing> getEventLog() {
+        return eventLog;
+    }
+
     /* Vehicle Data Methods */
 
     /**
@@ -199,8 +203,8 @@ public class NewCongestionChargeSystem {
         congestionChargeSystem.eventLog.add(new EntryEvent(vehicles.get(0), sysTime + (3*ONE_HOUR_IN_MS)));
         congestionChargeSystem.eventLog.add(new ExitEvent(vehicles.get(0), sysTime + (3*ONE_HOUR_IN_MS)));
 
-        /*Map<Vehicle, List<ZoneBoundaryCrossing>> crossingsPerVehicle = congestionChargeSystem.getCrossingsPerVehicle();
-        for(int i = 0; i < crossingsPerVehicle.size(); i++) {
+        Map<Vehicle, List<ZoneBoundaryCrossing>> chargePerVehicle = congestionChargeSystem.getCrossingsPerVehicle();
+        /*for(int i = 0; i < crossingsPerVehicle.size(); i++) {
             Vehicle v = (Vehicle) crossingsPerVehicle.keySet().toArray()[i];
             System.out.println(v + " :");
             for(int j = 0; j < crossingsPerVehicle.get(v).size(); j++){

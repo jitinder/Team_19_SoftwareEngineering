@@ -33,7 +33,7 @@ public class NewCongestionChargeSystemTest {
     NewCongestionChargeSystem newCongestionChargeSystem = new NewCongestionChargeSystem();
 
     ExitEvent exitEvent;
-
+/*
     int previousSize = newCongestionChargeSystem.eventLog.size();
 
    @Test
@@ -64,27 +64,6 @@ public class NewCongestionChargeSystemTest {
 
          assertTrue(newCongestionChargeSystem.previouslyRegistered(vehicle));
     }
-/*
-    public boolean checkOrderingOf(List<ZoneBoundaryCrossing> crossings) {
-
-        ZoneBoundaryCrossing lastEvent = crossings.get(0);
-
-        for (ZoneBoundaryCrossing crossing : crossings.subList(1, crossings.size())) {
-            if (crossing.timestamp() < lastEvent.timestamp()) {
-                return false;
-            }
-            if (crossing instanceof EntryEvent && lastEvent instanceof EntryEvent) {
-                return false;
-            }
-            if (crossing instanceof ExitEvent && lastEvent instanceof ExitEvent) {
-                return false;
-            }
-            lastEvent = crossing;
-        }
-
-        return true;
-    }
-*/
 
     @Test
     public void checkOrderingOfTest() {
@@ -157,5 +136,6 @@ public class NewCongestionChargeSystemTest {
     public void tearDown() {
         newCongestionChargeSystem = null;
     }
+    */
 
 }

@@ -1,17 +1,7 @@
 package com.trafficmon;
 
-import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
-import org.jmock.lib.IdentityExpectationErrorTranslator;
 import org.junit.Rule;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.*;
 
 public class NewCongestionChargeSystemTest {
 
@@ -30,22 +20,22 @@ public class NewCongestionChargeSystemTest {
         vehicle = new Vehicle(registration);
     }
 
-    NewCongestionChargeSystem newCongestionChargeSystem = new NewCongestionChargeSystem();
+    CongestionChargeSystem congestionChargeSystem = new CongestionChargeSystem();
 
     ExitEvent exitEvent;
 /*
-    int previousSize = newCongestionChargeSystem.eventLog.size();
+    int previousSize = congestionChargeSystem.eventLog.size();
 
    @Test
     public void vehicleEnteringZoneTest() {
-        assertEquals(newCongestionChargeSystem.eventLog.size(), previousSize);
-       newCongestionChargeSystem.vehicleEnteringZone(vehicle);
-        assertEquals(newCongestionChargeSystem.eventLog.size(), previousSize+1);
+        assertEquals(congestionChargeSystem.eventLog.size(), previousSize);
+       congestionChargeSystem.vehicleEnteringZone(vehicle);
+        assertEquals(congestionChargeSystem.eventLog.size(), previousSize+1);
     }
 
     @Test
     public void vehicleLeavingZoneTest() {
-       if (!newCongestionChargeSystem.previouslyRegistered(vehicle)) {
+       if (!congestionChargeSystem.previouslyRegistered(vehicle)) {
            previouslyRegisteredTest_forNewVehicles();
        }
        previouslyRegisteredTest_forRegisteredVehicles();
@@ -55,14 +45,14 @@ public class NewCongestionChargeSystemTest {
          String newRegistration = "ABC 123";
          Vehicle newVehicle = new Vehicle(newRegistration);
 
-         assertFalse(newCongestionChargeSystem.previouslyRegistered(newVehicle));
+         assertFalse(congestionChargeSystem.previouslyRegistered(newVehicle));
     }
 
     public void previouslyRegisteredTest_forRegisteredVehicles() {
          exitEvent = new ExitEvent(vehicle, timestamp);
-         newCongestionChargeSystem.eventLog.add(exitEvent);
+         congestionChargeSystem.eventLog.add(exitEvent);
 
-         assertTrue(newCongestionChargeSystem.previouslyRegistered(vehicle));
+         assertTrue(congestionChargeSystem.previouslyRegistered(vehicle));
     }
 
     @Test
@@ -76,7 +66,7 @@ public class NewCongestionChargeSystemTest {
 
         ZoneBoundaryCrossing lastEvent = crossings.get(0);
 
-        assertFalse(newCongestionChargeSystem.checkOrderingOf(crossings));
+        assertFalse(congestionChargeSystem.checkOrderingOf(crossings));
        // assertTrue(lastEvent== crossing);
     }
 
@@ -86,12 +76,12 @@ public class NewCongestionChargeSystemTest {
         HashMap<Vehicle, List<ZoneBoundaryCrossing>> crossingsPerVehicle = new HashMap<>();
         int previousSize = crossingsPerVehicle.size();
 
-        assertNotNull(newCongestionChargeSystem.getCrossingsPerVehicle());
+        assertNotNull(congestionChargeSystem.getCrossingsPerVehicle());
 
-        for(ZoneBoundaryCrossing crossing: newCongestionChargeSystem.eventLog){
+        for(ZoneBoundaryCrossing crossing: congestionChargeSystem.eventLog){
             Vehicle currentVehicle = crossing.getVehicle();
             if(!crossingsPerVehicle.containsKey(currentVehicle)){
-                assertTrue(newCongestionChargeSystem.previouslyRegistered(currentVehicle));
+                assertTrue(congestionChargeSystem.previouslyRegistered(currentVehicle));
             }
             assertEquals(crossingsPerVehicle.size(),previousSize +1);
         }
@@ -100,7 +90,7 @@ public class NewCongestionChargeSystemTest {
 
     @Test
     public static void main(String args[]){
-        NewCongestionChargeSystem congestionChargeSystem = new NewCongestionChargeSystem();
+        CongestionChargeSystem congestionChargeSystem = new CongestionChargeSystem();
 
         List<Vehicle> vehicles = new ArrayList<>();
         vehicles.add(Vehicle.withRegistration("A123 XYZ"));
@@ -134,7 +124,7 @@ public class NewCongestionChargeSystemTest {
     }
 
     public void tearDown() {
-        newCongestionChargeSystem = null;
+        congestionChargeSystem = null;
     }
     */
 

@@ -8,14 +8,8 @@ import java.util.regex.Pattern;
 
 public class VehicleTest {
     public final String registration = "B628 3XQ";
-    public final String invalid_reg = "";
     long timestamp;
     Vehicle testVehicle = new Vehicle(registration);
-
-   // String pattern = "(.*)
-
-    // Create pattern object
-   // Pattern pattern = Pattern.compile(pattern);
 
     @Test
     public void withRegistrationTest() {
@@ -28,29 +22,22 @@ public class VehicleTest {
     }
 
     @Test
-    public void equals() {
+    public void equalsTest() {
         Vehicle v = new Vehicle(registration);
-        assertTrue(testVehicle.equals(v));
         EntryEvent ee = new EntryEvent(testVehicle, timestamp);
 
-        // test for diff vehicles
+        //test for different vehicles
         String diff_reg = "LT16 R76";
         assertFalse(testVehicle.equals(new Vehicle(diff_reg)));
 
-        // test for same vehicle but different class
+         // test for same vehicle but different class
         assertFalse(testVehicle.equals(ee));
 
-        if (ee == null || testVehicle.getClass() != ((Object)ee).getClass()) {
-            try {
-                Vehicle vehicle = (Vehicle) ((Object)ee.getVehicle());
-                assertFalse(testVehicle.equals(ee));
-            }catch (IllegalArgumentException exception) {
-                throw new IllegalArgumentException("Object belongs to a class which is not acceptable");
-            }
+        //test for same vehicles
+        try {
+            assertTrue(testVehicle.equals(v));
+        }catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException("Object belongs to a class which is not acceptable");
         }
     }
-/*
-    @Test
-    public void hashCode() {
-    }*/
 }

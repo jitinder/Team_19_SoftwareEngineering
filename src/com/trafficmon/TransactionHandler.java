@@ -1,5 +1,8 @@
 package com.trafficmon;
 
+import java.math.BigDecimal;
+
 public interface TransactionHandler {
-    void executeTransaction(Object object);
+    void executeTransactionFor(Object object, BigDecimal charge);
+    void executeAllTransactions();
 }

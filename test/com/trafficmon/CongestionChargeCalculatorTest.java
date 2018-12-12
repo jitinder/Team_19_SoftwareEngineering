@@ -18,18 +18,14 @@ public class CongestionChargeCalculatorTest {
     private final long HALF_HOUR_IN_MS = 30*60*1000;
 
 
-    EventLog mockEventLog;
-
-    Calendar calendarForTimestamp;
-
-    List<Vehicle> vehicles;
+    private EventLog mockEventLog;
+    private Calendar calendarForTimestamp;
+    private List<Vehicle> vehicles;
 
    @Before
     public void setup(){
         chargeCalculator = new CongestionChargeCalculator();
-
         calendarForTimestamp = Calendar.getInstance();
-
         mockEventLog = EventLog.getInstance();
 
         vehicles = new ArrayList<>();

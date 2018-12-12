@@ -118,6 +118,8 @@ public class CongestionChargeSystemTest {
 
     //Transaction Tests - Correct Balance | Insufficient balance | Invalid Account
 
+    // Possible errors in Mac because of the CRLF and LF encoding. This code is written to run on a Windows Machine
+    // Remove the '\r' to run it on a Mac
     @Test
     public void executeTransactionForTestSufficientBalance(){
         BigDecimal charge = new BigDecimal(12);

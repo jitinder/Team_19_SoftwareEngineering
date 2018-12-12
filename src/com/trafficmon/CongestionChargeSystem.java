@@ -10,19 +10,7 @@ public class CongestionChargeSystem implements TransactionHandler{
     private PenaltiesService penaltiesService = OperationsTeam.getInstance();
     private CongestionChargeCalculator chargeCalculator = new CongestionChargeCalculator();
 
-    /* Singleton Class code */
-    private static CongestionChargeSystem instance = new CongestionChargeSystem();
-
     /* Getters and Setters */
-    /**
-     * Instantiates the {@link CongestionChargeSystem} at runtime
-     *
-     * @return the instance of the class
-     */
-    public static CongestionChargeSystem getInstance() {
-        return instance;
-    }
-
     /**
      * Used to set a custom {@link AccountsService} for this class
      *

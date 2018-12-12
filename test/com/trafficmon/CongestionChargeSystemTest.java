@@ -98,7 +98,7 @@ public class CongestionChargeSystemTest {
         accountNamesList = mockAccountsService.accountNames;
         accountBalanceList = mockAccountsService.accountBalances;
         mockPenaltiesService = context.mock(PenaltiesService.class);
-        congestionChargeSystem = CongestionChargeSystem.getInstance();
+        congestionChargeSystem = new CongestionChargeSystem();
         congestionChargeSystem.setAccountsService(mockAccountsService);
         congestionChargeSystem.setPenaltiesService(mockPenaltiesService);
         outContent = new ByteArrayOutputStream();

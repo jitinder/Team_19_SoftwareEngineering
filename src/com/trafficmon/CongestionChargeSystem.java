@@ -84,32 +84,4 @@ public class CongestionChargeSystem implements TransactionHandler{
             executeTransactionFor(vehicle, chargeList.get(vehicle));
         }
     }
-
-    /**
-     *
-     * For Testing
-     *
-     * **/
-    public static void main(String args[]){
-        CongestionChargeSystem congestionChargeSystem = new CongestionChargeSystem();
-
-        List<Vehicle> vehicles = new ArrayList<>();
-        vehicles.add(Vehicle.withRegistration("A123 XYZ"));
-        vehicles.add(Vehicle.withRegistration("J091 4PY"));
-        vehicles.add(Vehicle.withRegistration("B246 XYZ"));
-        vehicles.add(Vehicle.withRegistration("C783 4TT"));
-        vehicles.add(Vehicle.withRegistration("D243 5PR"));
-/*
-        long sysTime = System.currentTimeMillis();
-        congestionChargeSystem.eventLog.add(new EntryEvent(vehicles.get(0), sysTime));
-        congestionChargeSystem.eventLog.add(new ExitEvent(vehicles.get(0), sysTime + ONE_HOUR_IN_MS));
-        congestionChargeSystem.eventLog.add(new EntryEvent(vehicles.get(0), sysTime + (5*ONE_HOUR_IN_MS)));
-        congestionChargeSystem.eventLog.add(new ExitEvent(vehicles.get(0), sysTime + (7*ONE_HOUR_IN_MS)));
-
-        Map<Vehicle, BigDecimal> chargePerVehicle = congestionChargeSystem.getChargeList();
-        for(Vehicle v: chargePerVehicle.keySet()) {
-            System.out.println(v + " : " + chargePerVehicle.get(v));
-        }
-        */
-    }
 }

@@ -35,7 +35,7 @@ public abstract class ChargeCalculator {
      */
     public boolean canChargeAgain(long firstEntryTimeMs, long currentTime) {
         int timeTaken = getMinutesBetween(firstEntryTimeMs, currentTime);
-        if(timeTaken <= FOUR_HOURS_IN_MINS){
+        if(timeTaken < FOUR_HOURS_IN_MINS){
             return false;
         }
         return true;
@@ -52,9 +52,11 @@ public abstract class ChargeCalculator {
         Calendar calendarForTimestamp = Calendar.getInstance();
         calendarForTwoPm.set(Calendar.HOUR_OF_DAY, 14);
         calendarForTwoPm.set(Calendar.MINUTE, 0);
+        calendarForTwoPm.set(Calendar.SECOND, 0);
+        calendarForTwoPm.set(Calendar.MILLISECOND, 0);
         calendarForTimestamp.setTimeInMillis(timestamp);
 
-        if(calendarForTimestamp.after(calendarForTwoPm)) {
+        if(!calendarForTimestamp.before(calendarForTwoPm)) {
             return CHARGE_AFTER_TWO_PM;
         }
         return CHARGE_BEFORE_TWO_PM;

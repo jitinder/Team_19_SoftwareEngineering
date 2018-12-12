@@ -15,6 +15,7 @@ import java.time.*;
 import static org.junit.Assert.*;
 
 public class CongestionChargeSystemTest {
+/*
 
     private static final BigDecimal CHARGE_BEFORE_TWO_PM = new BigDecimal(6);
     private static final BigDecimal CHARGE_AFTER_TWO_PM = new BigDecimal(4);
@@ -50,11 +51,13 @@ public class CongestionChargeSystemTest {
     //for getChargeList Tests
     Calendar current = Calendar.getInstance();
 
-    /**
+    */
+/**
      * Checks the size of the eventLog before and after the vehicleEnteringZone method is called.
      * If the size of eventLog increments by 1 after method has been called, it means method is working
      * and the test passes.
-     */
+     *//*
+
     @Test
     public void vehicleEnteringZoneTest() {
         int previousSize = newCongestionChargeSystem.getEventLog().size();
@@ -63,12 +66,14 @@ public class CongestionChargeSystemTest {
         assertEquals(newCongestionChargeSystem.getEventLog().size(),previousSize + 1);
     }
 
-    /**
+    */
+/**
      * Tests if eventLog size increases after the method is called.
      * This is because if the vehicle has been previously registered, leaving the zone would add an exit event
      * to the eventLog, thereby incrementing its size by 1.
      *
-     */
+     *//*
+
     @Test
     public void vehicleLeavingZoneTest_forPreviouslyRegisteredVehicles() {
         int previousSize = newCongestionChargeSystem.getEventLog().size();
@@ -81,11 +86,13 @@ public class CongestionChargeSystemTest {
         assertEquals(newCongestionChargeSystem.getEventLog().size(),previousSize + 1);
     }
 
-    /**
+    */
+/**
      * Tests the method for vehicles that have not been previously registered.
      * If they are new Vehicles then calling the vehicleLeavingZone method will not do anything.
      * Hence, test checls for increment in eventLog size (should be none in this case)
-     */
+     *//*
+
     @Test
     public void vehicleLeavingZoneTest_forNewVehicles() {
         String registration = "BCT1 089";
@@ -98,7 +105,8 @@ public class CongestionChargeSystemTest {
         assertNotEquals(newCongestionChargeSystem.getEventLog().size(),previousSize + 1);
     }
 
-    /*
+    */
+/*
     @Test
     public void checkOrderingOfTest() {
 
@@ -107,7 +115,8 @@ public class CongestionChargeSystemTest {
         assertFalse(newCongestionChargeSystem.checkOrderingOf(crossings));
        // assertTrue(lastEvent== crossing);
     }
-*/
+*//*
+
     @Test
     public void getCrossingsPerVehicleTest() {
         HashMap<Vehicle, List<ZoneBoundaryCrossing>> crossingsPerVehicle = new HashMap<>();
@@ -158,6 +167,7 @@ public class CongestionChargeSystemTest {
     public void tearDown() {
         newCongestionChargeSystem = null;
     }
+*/
 
 
 }

@@ -1,5 +1,7 @@
 package com.trafficmon;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -7,13 +9,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class VehicleTest {
-    public final String registration = "B628 3XQ";
-    long timestamp;
-    Vehicle testVehicle = new Vehicle(registration);
+
+    private String registration;
+    private long timeStamp;
+    private Vehicle testVehicle;
+
+    @Before
+    public void setup(){
+        registration = "B628 3XQ";
+        testVehicle = new Vehicle(registration);
+        timeStamp = 0;
+    }
 
     @Test
     public void withRegistrationTest() {
-        assertEquals(testVehicle.withRegistration(registration), new Vehicle(registration));
+        assertEquals(testVehicle, Vehicle.withRegistration(registration));
     }
 
     @Test
@@ -22,22 +32,26 @@ public class VehicleTest {
     }
 
     @Test
-    public void equalsTest() {
-        Vehicle v = new Vehicle(registration);
-        EntryEvent ee = new EntryEvent(testVehicle, timestamp);
-
-        //test for different vehicles
+    public void equalsTestDifferentRegistrationNumbers() {
         String diff_reg = "LT16 R76";
         assertFalse(testVehicle.equals(new Vehicle(diff_reg)));
+    }
 
-         // test for same vehicle but different class
+    @Test
+    public void equalsTestDifferentClass(){
+        EntryEvent ee = new EntryEvent(testVehicle, timeStamp);
         assertFalse(testVehicle.equals(ee));
+    }
 
-        //test for same vehicles
-        try {
-            assertTrue(testVehicle.equals(v));
-        }catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException("Object belongs to a class which is not acceptable");
-        }
+    @Test
+    public void equalsTestSameRegistrationSameClass(){
+        Vehicle v = new Vehicle(registration);
+        assertTrue(testVehicle.equals(v));
+    }
+
+    @After
+    public void reset(){
+        registration = "";
+        testVehicle = null;
     }
 }

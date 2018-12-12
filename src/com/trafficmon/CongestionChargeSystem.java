@@ -99,7 +99,7 @@ public class CongestionChargeSystem implements TransactionHandler{
         vehicles.add(Vehicle.withRegistration("B246 XYZ"));
         vehicles.add(Vehicle.withRegistration("C783 4TT"));
         vehicles.add(Vehicle.withRegistration("D243 5PR"));
-
+/*
         long sysTime = System.currentTimeMillis();
         congestionChargeSystem.eventLog.add(new EntryEvent(vehicles.get(0), sysTime));
         congestionChargeSystem.eventLog.add(new ExitEvent(vehicles.get(0), sysTime + ONE_HOUR_IN_MS));
@@ -110,5 +110,6 @@ public class CongestionChargeSystem implements TransactionHandler{
         for(Vehicle v: chargePerVehicle.keySet()) {
             System.out.println(v + " : " + chargePerVehicle.get(v));
         }
+        */
     }
 }

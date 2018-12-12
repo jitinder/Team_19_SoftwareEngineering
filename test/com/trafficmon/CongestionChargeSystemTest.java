@@ -136,8 +136,6 @@ public class CongestionChargeSystemTest {
     public List<ZoneBoundaryCrossing> create_mock_eventLog() {
         //A Duration can have a negative value, if it is created with an end point that occurs before the start point.
 
-        List<ZoneBoundaryCrossing> mock_eventLog = new ArrayList<>();
-
         List<Vehicle> vehicles = new ArrayList<>();
         vehicles.add(Vehicle.withRegistration("A123 XYZ"));
         vehicles.add(Vehicle.withRegistration("J091 4PY"));
@@ -149,16 +147,22 @@ public class CongestionChargeSystemTest {
 
         long time = c.getTime().getTime();
 
-        mock_eventLog.add(new EntryEvent(vehicles.get(0), time));
-        mock_eventLog.add(new ExitEvent(vehicles.get(0), time + ONE_HOUR_IN_MS));
-        mock_eventLog.add(new EntryEvent(vehicles.get(0), time + (3*ONE_HOUR_IN_MS)));
-        mock_eventLog.add(new ExitEvent(vehicles.get(0), time + (4*ONE_HOUR_IN_MS)));
+        EventLog mock_eventLog = EventLog.getInstance();
 
-        mock_eventLog.add(new EntryEvent(vehicles.get(1), time));
-        mock_eventLog.add(new ExitEvent(vehicles.get(1), time + (4*ONE_HOUR_IN_MS)));
+        // vehicle enters before 2 pm
+        mock_eventLog.vehicleEntryEvent(vehicles.get(0));
+        mock_eventLog.vehicleExitEvent(vehicles.get(0));
+
+        mock_eventLog.vehicleEntryEvent(vehicles.get(1));
+        mock_eventLog.vehicleEntryEvent(vehicles.get(1));
+        mock_eventLog.vehicleEntryEvent(vehicles.get(1));
+        mock_eventLog.vehicleExitEvent(vehicles.get(1));
 
         mock_eventLog.add(new EntryEvent(vehicles.get(2), time));
         mock_eventLog.add(new ExitEvent(vehicles.get(2), time + (6*ONE_HOUR_IN_MS)));
+
+
+
 
         return mock_eventLog;
 
